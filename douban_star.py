@@ -1,9 +1,12 @@
 from urllib import request
 from bs4 import BeautifulSoup
 
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
 url = "https://movie.douban.com/top250"
-req = request.urlopen(url)
-contnet = req.read().decode("utf-8")
+# 设置headers
+req = request.Request(url=url, headers=self.headers)
+res = request.urlopen(req)
+contnet = res.read().decode("utf-8")
 obj = BeautifulSoup(contnet,"html5lib")
 results = obj.findAll("li")
 
